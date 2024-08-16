@@ -44,3 +44,21 @@ func (ff *File) CalcSha256() error {
 	ff.Sha256 = &sh
 	return nil
 }
+
+func (ff *File) Same(f *File) bool {
+	if f == nil || ff == nil {
+		return ff == nil && f == nil
+	}
+	sha := false
+	if f.Sha256 == nil || ff.Sha256 == nil {
+		sha = (ff.Sha256 == nil) && (f.Sha256 == nil)
+	} else {
+		sha = *ff.Sha256 == *f.Sha256
+	}
+	return sha &&
+		ff.ID == f.ID &&
+		ff.FullName == f.FullName &&
+		ff.Size == f.Size &&
+		ff.Status == f.Status &&
+		ff.ModTime.Equal(f.ModTime)
+}

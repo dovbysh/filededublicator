@@ -22,4 +22,5 @@ go.work
 go.work.sum
 
 .idea/
-/pkg/te/te.db
+/pkg/te/evrething/te.db
+/pkg/storage/*.db

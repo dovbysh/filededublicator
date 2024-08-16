@@ -1,4 +1,4 @@
-package te
+package evrething
 
 import (
 	"os"
@@ -48,7 +48,8 @@ func TestGormSqlight(t *testing.T) {
 				Status:   model.FileStatusNew,
 			}
 			assert.NoError(t, f.CalcSha256())
-			db.Create(&f)
+			tx := db.Create(&f)
+			t.Log(tx.RowsAffected, tx.Error)
 		}
 	}
 }
